@@ -5,6 +5,7 @@
  */
 package com.gleywson.telas;
 
+import java.awt.Dimension;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -41,6 +42,8 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Descompak");
+        setResizable(false);
 
         jMenu4.setText("Notas Fiscais");
 
@@ -76,11 +79,15 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -92,37 +99,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        buscarJFileChooser();
+        TelaDivideArquivo da = new TelaDivideArquivo();
+        Dimension dimension = this.getSize();
+        da.setSize(dimension);
+        desktopPane.add(da);
+        da.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void buscarJFileChooser() {
-        try {
-
-            //Configurando o meu JFileChooser
-            JFileChooser jfc = new JFileChooser();
-            //Configura o filtro de seleção
-            jfc.setFileFilter(new FileNameExtensionFilter("Arquivo PDF (*.pdf)", "pdf"));
-            //Configura o Label do botão de seleção
-            jfc.setApproveButtonText("Selecionar arquivo");
-            //Configura o Título da caixa de Dialogo
-            jfc.setDialogTitle("Seletor de notas");
-            //Configura a possíbilidade de selecionar vários arquivos
-            jfc.setAcceptAllFileFilterUsed(false);
-
-            int returnVal = jfc.showOpenDialog(this);// Obs.: Esse "this" do argumento permite que o icone de canto do seu frame seja herdado deste.
-
-            if (!(returnVal == JFileChooser.APPROVE_OPTION)) { // Teste o usuário seleionou algo
-                return;
-            }
-
-            File arquivo = jfc.getSelectedFile();
-
-            
-
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-    }
 
     /**
      * @param args the command line arguments
